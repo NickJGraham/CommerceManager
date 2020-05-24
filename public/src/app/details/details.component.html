@@ -1,0 +1,20 @@
+<h2>Product Details</h2>
+<div *ngIf="thisProduct">
+    <p class="fronterror" *ngIf="thisProduct.product.qty != 0">To delete a product, the Qty must be 0.</p>
+    <table *ngIf="thisProduct">
+      <tr>
+        <td class="tData">Name</td>
+        <td>{{thisProduct.product.title | titlecase}}</td>
+      </tr>
+      <tr>
+        <td class="tData">Qty</td>
+        <td>{{thisProduct.product.qty}}</td>
+      </tr>
+      <tr>
+        <td class="tData">Price</td>
+        <td>{{thisProduct.product.price | currency:"USD"}}</td>
+      </tr>
+    </table>
+    <a [routerLink]="['/']"><button class="resetButton">BACK</button></a>
+    <button class="button btn btn-danger" (click)="deleteProduct(thisProduct.product._id)" [disabled]="thisProduct.product.qty!==0">Delete</button>
+</div>

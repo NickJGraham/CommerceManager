@@ -1,0 +1,27 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box">
+    <h1>Edit Product</h1>
+    <div id="lilbox">
+      <form (submit)="editSubmit()" *ngIf="product">
+        <h3>Title: <input class="fields" type="text" name="title" [value]="editProduct.title" [(ngModel)]="editProduct.title"></h3>
+        <p class="fronterror" *ngIf="editProduct.title.length < 3">Title must be at least 3 characters long!</p>
+        <h3>Qty: <input class="fields" type="number" name="qty" [value]="editProduct.qty" [(ngModel)]="editProduct.qty"></h3>
+        <p class="fronterror" *ngIf="editProduct.qty < 0">Qty cannot be less than 0!</p>      
+        <h3>Price: <input class="fields" type="number" name="price" [value]="editProduct.price" [(ngModel)]="editProduct.price"></h3>
+        <!-- <p class="fronterror" *ngIf="editProduct.price < 0">Price cannot be less than 0!</p>  -->
+        <span class="button btn btn-danger" (click)="reset()">Reset</span>
+        <input class="button btn btn-primary" type="submit" value="Update" [disabled]="editProduct.title.length < 3 || editProduct.qty < 0 || editProduct.price < 0">
+      </form>
+    </div>
+  </div>
+</body>
+</html>
